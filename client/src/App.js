@@ -12,6 +12,9 @@ import Admin from "./pages/admin/screens/Admin";
 import Comments from "./pages/admin/screens/comments/Comments";
 import NewPost from "./pages/admin/screens/posts/NewPost";
 import ManagePosts from "./pages/admin/screens/posts/ManagePosts";
+import Blogs from "./pages/blogs/Blogs";
+import AboutUs from "./pages/other/AboutUs";
+import Contact from "./pages/other/Contact";
 
 function App() {
   return (
@@ -19,10 +22,13 @@ function App() {
       <Routes>
         <Route index path="/" element={<HomePage />}></Route>
         <Route path="/blog/:slug" element={<ArticleDetailPage />}></Route>
+        <Route path="/blogs" element={<Blogs />}></Route>
+        <Route path="/about-us" element={<AboutUs />}></Route>
+        <Route path="/contact" element={<Contact />}></Route>
         <Route path="/register" element={<RegisterPage />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/profile" element={<ProfilePage />}></Route>
-        <Route  path="/admin" element={<AdminLayout />}>
+        <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Admin />} />
           <Route path="comments" element={<Comments />} />
           <Route path="posts/new" element={<NewPost />} />

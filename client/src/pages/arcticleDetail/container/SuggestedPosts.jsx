@@ -15,7 +15,7 @@ const SuggestedPosts = ({ className, header, posts = [], tags }) => {
           >
             <img
               src={
-                item?.photo !== "sample photo"
+                item?.photo !== ""
                   ? stables.UPLOAD_FOLDER_BASE_URL + item?.photo
                   : images.samplePostImage
               }

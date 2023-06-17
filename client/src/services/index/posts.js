@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const createPost = async ({ title, content, image, token }) => {
+export const createPost = async ({ title, caption, body, token }) => {
   try {
     const config = {
       headers: {
@@ -8,11 +8,12 @@ export const createPost = async ({ title, content, image, token }) => {
       },
     };
 
-    const { data } = await axios.post("/api/posts", {
+    const { data } = await axios.post("/api/posts",  {
       title,
-      content,
-      image,
-    });
+      body,
+      caption,
+    }, config);
+    console.log(data,'service data')
     return data;
   } catch (error) {
     if (error.response && error.response.data.message) {
@@ -37,7 +38,7 @@ export const getAllPosts = async () => {
 export const getSinglePost = async ({ slug }) => {
   try {
     const { data } = await axios.get(`/api/posts/${slug}`);
-  
+
     return data;
   } catch (error) {
     if (error.response && error.response.data.message) {

@@ -13,7 +13,6 @@ const registerUser = async (req, res, next) => {
       // return res.status(400).json({ message: "User have already registered" });
       throw new Error("User have already registered");
     }
-
     //yeni kullanıcı ekler
     user = await User.create({
       name,

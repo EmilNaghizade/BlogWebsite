@@ -9,7 +9,7 @@ import {
 import { authGuard, adminGuard } from "../middleware/authMiddleware.js";
 const router = express.Router();
 
-router.post("/", authGuard, adminGuard, createPost);
+router.post("/", authGuard, createPost);
 router.put("/:slug", authGuard, adminGuard, updatePost);
 router.delete("/:slug", authGuard, adminGuard, deletePost);
 router.get("/:slug", getPost);

@@ -7,7 +7,6 @@ import Paragraph from "@tiptap/extension-paragraph";
 import Text from "@tiptap/extension-text";
 import Italic from "@tiptap/extension-italic";
 import parse from "html-react-parser";
-
 import BreadCrumbs from "../../components/BreadCrumb";
 import CommentsContainer from "../../components/comments/CommentsContainer";
 import MainLayout from "../../components/MainLayout";
@@ -30,15 +29,13 @@ const ArticleDetailPage = () => {
     queryKey: ["blog", slug],
     onSuccess: (data) => {
       setbreadCrumbsData([
-        { name: "Home", link: "/" },
-        { name: "Blog", link: "/blog" },
-        { name: "Article title", link: `/blog/${data.slug}` },
+        { name: "Anasayfa", link: "/" },
+        { name: "Makaleler", link: "/blogs" },
+        { name: `${data.title}`, link: `/blog/${data.slug}` },
       ]);
       setBody(
-        parse(
-          generateHTML(data?.body, [Bold, Italic, Text, Paragraph, Document])
-        )
-      );
+        parse(data?.body?.content
+        ));
     },
   });
 
@@ -46,6 +43,8 @@ const ArticleDetailPage = () => {
     queryFn: () => getAllPosts(),
     queryKey: ["posts"],
   });
+
+  console.log(data?.body, 'singlePost')
 
   return (
     <MainLayout>

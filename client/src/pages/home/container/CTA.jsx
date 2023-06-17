@@ -22,7 +22,7 @@ const CTA = () => {
       <section className="relative bg-dark-hard px-5">
         <div className="container grid grid-cols-12 mx-auto py-10 lg:text-center md:pb-20 lg:place-items-center">
           <div className="col-span-12 mb-4 md:text-lg">
-            <p className="text-dark-light  text-lg leading-7 mt-6 md:text-center "  style={{fontSize:"30px", marginBottom:"45px"}}>
+            <p className="text-dark-light  text-lg leading-7 mt-6 md:text-center " style={{ fontSize: "30px", marginBottom: "45px" }}>
               Diğer işlerimize ve bize bu mecralardan da ulaşabilirsiniz.           </p>
           </div>
 
@@ -61,7 +61,7 @@ const CTA = () => {
                 rel="noreferrer"
                 className="text-center ml-5"
               >
-                Aslı Ünver'in github adresi
+                Aslı Ünver'in Linkedin adresi
               </a>
             </button>
           </div>

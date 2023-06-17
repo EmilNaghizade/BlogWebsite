@@ -8,7 +8,7 @@ import { logout } from "../store/actions/user";
 
 const navItemsInfo = [
   { name: "Anasayfa", type: "link", href: "/" },
-  { name: "Makaleler", type: "link", href: "/articles" },
+  { name: "Makaleler", type: "link", href: "/blogs" },
   {
     name: "Sayfalar",
     type: "dropdown",

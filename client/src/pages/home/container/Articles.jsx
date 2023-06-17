@@ -6,6 +6,7 @@ import { getAllPosts } from "../../../services/index/posts";
 import toast from "react-hot-toast";
 import ArticleCardSkeleton from "../../../components/ArticleCardSkeleton";
 import ErrorMessage from "../../../components/ErrorMessage";
+import { Link } from "react-router-dom";
 
 const Articles = () => {
   const { data, isLoading, isError } = useQuery({
@@ -30,7 +31,7 @@ const Articles = () => {
         ) : isError ? (
           <ErrorMessage message="Couldn't fetch the posts data" />
         ) : (
-          data.map((post) => (
+          data.slice(0, 6).map((post) => (
             <ArticleCard
               key={post._id}
               post={post}
@@ -39,10 +40,10 @@ const Articles = () => {
           ))
         )}
       </div>
-      <button className="mx-auto flex items-center gap-x-2 font-bold text-primary border-2 border-primary px-6 py-3 rounded-lg">
+      <Link to="/blogs" className="mx-auto flex items-center gap-x-2 font-bold text-primary border-2 border-primary hover:bg-primary hover:text-white hover:border-white transition-all duration-200 px-6 py-3 rounded-lg">
         <span>Daha fazla içerik</span>
         <FaArrowRight className="w-3 h-3" />
-      </button>
+      </Link>
     </div>
   );
 };

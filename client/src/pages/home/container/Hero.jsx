@@ -23,6 +23,7 @@ const Hero = () => {
               placeholder="Makale araştırın"
             />
           </div>
+          {/* Blog arama alalni */}
           <button className="w-full bg-primary text-white font-semibold rounded-lg px-5 py-3 md:absolute md:right-2 md:top-1/2 md:-translate-y-1/2 md:w-fit md:py-2">
             Ara
           </button>

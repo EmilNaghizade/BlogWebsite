@@ -12,7 +12,7 @@ const ArticleCard = ({ className, post }) => {
       <Link to={`/blog/${post.slug}`}>
         <img
           src={
-            post.photo !== "sample photo"
+            post.photo 
               ? stables.UPLOAD_FOLDER_BASE_URL + post.photo
               : images.samplePostImage
           }
@@ -48,9 +48,8 @@ const ArticleCard = ({ className, post }) => {
               </h4>
               <div className="flex items-center gap-x-2">
                 <span
-                  className={`${
-                    post.user.verified ? "bg-[#36B37E]" : "bg-red-500"
-                  }  w-fit bg-opacity-20 p-1.5 rounded-full`}
+                  className={`${post.user.verified ? "bg-[#36B37E]" : "bg-red-500"
+                    }  w-fit bg-opacity-20 p-1.5 rounded-full`}
                 >
                   {post.user.verified ? (
                     <BsCheckLg className="w-1.5 h-1.5 text-[#36B37E]" />
