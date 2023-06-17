@@ -3,7 +3,11 @@ import MainLayout from "../../components/MainLayout"
 const Contact = () => {
     return (
         <MainLayout>
-            <div className="flex flex-col container mx-auto  px-5 py-10">
+            <div className="flex flex-col container mx-auto text-center">
+                <h1 className="text-3xl my-5">Yakında</h1>
+            </div>
+            
+            {/* <div className="flex flex-col container mx-auto  px-5 py-10">
                 <div className="flex flex-row justify-center items-center">
                     <h1 className="text-3xl font-bold text-center mb-4">Hakkımızda</h1>
 
@@ -42,7 +46,7 @@ const Contact = () => {
             </div>
             <div className="flex " style={{ marginBottom: '25px' }}>
 
-            </div>
+            </div> */}
 
         </MainLayout>
     )
