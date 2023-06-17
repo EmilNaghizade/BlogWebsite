@@ -12,12 +12,15 @@ const Footer = () => {
               <a href="/">Anasayfa</a>
             </li>
             <li>
-              <a href="/">Makaleler</a>
+              <a href="/blogs">Makaleler</a>
             </li>
             <li>
-              <a href="/">Hakkımızda</a>
+              <a href="/about-us">Hakkımızda</a>
             </li>
-           
+            <li>
+              <a href="/contact">İletişim</a>
+            </li>
+
           </ul>
         </div>
 

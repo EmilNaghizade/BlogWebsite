@@ -2,7 +2,7 @@ import MainLayout from "../../components/MainLayout"
 
 const AboutUs = () => {
     return (
-        <MainLayout>AboutUs</MainLayout>
+        <MainLayout></MainLayout>
     )
 }
 export default AboutUs

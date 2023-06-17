@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const createPost = async (req, res, next) => {
   try {
-    const  { title, caption, body } = req.body;
+    const  { title, caption, body, tags } = req.body;
     const post = new Post({
       title: title,
       caption: caption,
@@ -17,6 +17,7 @@ const createPost = async (req, res, next) => {
       },
       photo: "",
       user: req.user._id,
+      tags: tags,
     });
 
     const createdPost = await post.save();

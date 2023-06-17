@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const createPost = async ({ title, caption, body, token }) => {
+export const createPost = async ({ title, caption, body, tags,token }) => {
   try {
     const config = {
       headers: {
@@ -12,8 +12,9 @@ export const createPost = async ({ title, caption, body, token }) => {
       title,
       body,
       caption,
+      tags
     }, config);
-    console.log(data,'service data')
+
     return data;
   } catch (error) {
     if (error.response && error.response.data.message) {

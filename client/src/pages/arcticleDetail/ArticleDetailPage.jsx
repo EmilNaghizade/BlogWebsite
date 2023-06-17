@@ -1,11 +1,5 @@
 import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { generateHTML } from "@tiptap/html";
-import Bold from "@tiptap/extension-bold";
-import Document from "@tiptap/extension-document";
-import Paragraph from "@tiptap/extension-paragraph";
-import Text from "@tiptap/extension-text";
-import Italic from "@tiptap/extension-italic";
 import parse from "html-react-parser";
 import BreadCrumbs from "../../components/BreadCrumb";
 import CommentsContainer from "../../components/comments/CommentsContainer";
@@ -33,9 +27,7 @@ const ArticleDetailPage = () => {
         { name: "Makaleler", link: "/blogs" },
         { name: `${data.title}`, link: `/blog/${data.slug}` },
       ]);
-      setBody(
-        parse(data?.body?.content
-        ));
+      setBody(parse(JSON.stringify(data?.body?.content)))
     },
   });
 
@@ -44,7 +36,7 @@ const ArticleDetailPage = () => {
     queryKey: ["posts"],
   });
 
-  console.log(data?.body, 'singlePost')
+
 
   return (
     <MainLayout>

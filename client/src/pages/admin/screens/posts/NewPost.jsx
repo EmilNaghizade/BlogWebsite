@@ -5,8 +5,7 @@ import TextEditor from "./TextEditor"
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-
-
+import { WithContext as ReactTags } from 'react-tag-input';
 
 
 const NewPost = () => {
@@ -16,7 +15,7 @@ const NewPost = () => {
 
   const { mutate, isLoading: isLoading } =
     useMutation({
-      mutationFn: ({ title, caption, body, token }) => {
+      mutationFn: ({ title, caption, body, tags,token }) => {
         return createPost({ title, caption, body, token });
       },
       onSuccess: () => {
@@ -39,6 +38,7 @@ const NewPost = () => {
       title: "",
       caption: "",
       body: "",
+      tags: "",
     },
     mode: "onChange",
   });
@@ -49,9 +49,8 @@ const NewPost = () => {
   }
 
   const sumbitHandler = (data) => {
-    const { title, caption, body } = data;
+    const { title, caption, body, tags } = data;
     mutate({ title, caption, body: desc, token: userState.userInfo.token, });
-    console.log(data, 'data')
   };
 
 
