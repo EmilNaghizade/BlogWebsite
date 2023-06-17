@@ -86,7 +86,7 @@ const Footer = () => {
           />
           <p className="text-sm text-dark-light text-center mt-4 md:text-left md:text-base">
             Bu proje Aslı Ünver ve Emil Naghizade tarafından Tasarım Projesi
-            olarak tasarlanmıştır
+            için tasarlanmıştır
           </p>
         </div>
       </footer>
