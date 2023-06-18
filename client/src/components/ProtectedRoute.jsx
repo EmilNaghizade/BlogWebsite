@@ -2,10 +2,8 @@ import { useSelector } from "react-redux"
 import WrongRoute from "./WrongRoute"
 
 const ProtectedRoute = ({ children }) => {
-    const isAdmin = useSelector(state => state.user.userInfo.admin)
-    console.log(isAdmin, 'admin')
-
-    if (!isAdmin) {
+    const isVerified = useSelector(state => state.user.userInfo?.verified)
+    if (!isVerified) {
         return <div>
             <WrongRoute />
         </div>

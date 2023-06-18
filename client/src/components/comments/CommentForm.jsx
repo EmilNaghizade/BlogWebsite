@@ -21,7 +21,7 @@ const CommentForm = ({
         <textarea
           className="w-full focus:outline-none bg-transparent"
           rows="5"
-          placeholder="Leave your comment here..."
+          placeholder="Yorumunuzu bırakın..."
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
@@ -31,7 +31,7 @@ const CommentForm = ({
               onClick={formCancelHandler}
               className="px-6 py-2.5 rounded-lg border border-red-500 text-red-500"
             >
-              Cancel
+              Vazgeç
             </button>
           )}
           <button

@@ -170,10 +170,71 @@ const updateProfilePicture = async (req, res, next) => {
   }
 };
 
+const getAllUsers = async (req, res, next) => {
+  try {
+    let users = await User.find({}).select("-password");
+    res.json(users);
+  } catch (error) {
+    next(error);
+  }
+}
+
+const verifyUser = async (req, res, next) => {
+  try {
+    let user = await User.findById(req.params.id);
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    user.verified = true;
+
+    const updatedUserProfile = await user.save();
+
+    res.status(200).json({
+      _id: updatedUserProfile._id,
+      avatar: updatedUserProfile.avatar,
+      name: updatedUserProfile.name,
+      email: updatedUserProfile.email,
+      verified: updatedUserProfile.verified,
+      admin: updatedUserProfile.admin,
+      token: await updatedUserProfile.generateJWT(), //jwt token
+
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const deleteUser = async (req, res, next) => {
+  try {
+    let user = await User.findByIdAndDelete(req.params.id);
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+
+
+    res.status(200).json({
+      message: "User deleted"
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+
+
+
 export {
   registerUser,
   loginUser,
   userProfile,
   updateProfile,
   updateProfilePicture,
+  getAllUsers,
+  verifyUser,
+  deleteUser
 };

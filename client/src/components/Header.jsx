@@ -9,14 +9,8 @@ import { logout } from "../store/actions/user";
 const navItemsInfo = [
   { name: "Anasayfa", type: "link", href: "/" },
   { name: "Makaleler", type: "link", href: "/blogs" },
-  {
-    name: "Sayfalar",
-    type: "dropdown",
-    items: [
-      { title: "Hakkımızda", href: "/about-us" },
-      { title: "İletişim", href: "/contact" },
-    ],
-  },
+  { name: "Hakkımızda", type: "link", href: "/about-us" },
+
 ];
 
 const NavItems = ({ item }) => {

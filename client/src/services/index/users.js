@@ -90,3 +90,47 @@ export const updateProfilePicture = async ({ token, formData }) => {
     throw new Error(error.message);
   }
 };
+
+export const getAllUsers = async () => {
+  try {
+  
+
+    const { data } = await axios.get("/api/users");
+    return data;
+  } catch (error) {
+    if (error.response && error.response.data.message) {
+      throw new Error(error.response.data.message);
+    }
+    throw new Error(error.message);
+  }
+}
+
+export const verifyUser = async ({  userId }) => {
+  try {
+    const { data } = await axios.put(`/api/users/verify/${userId}`);
+    return data;
+  } catch (error) {
+    if (error.response && error.response.data.message) {
+      throw new Error(error.response.data.message);
+    }
+    throw new Error(error.message);
+  }
+}
+
+export const deleteUser = async ({ token, userId }) => {
+  try {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const { data } = await axios.delete(`/api/users/delete/${userId}`, config);
+    console.log(data,"service");
+    return data;
+  } catch (error) {
+    if (error.response && error.response.data.message) {
+      throw new Error(error.response.data.message);
+    }
+    throw new Error(error.message);
+  }
+}

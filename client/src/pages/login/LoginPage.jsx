@@ -83,9 +83,8 @@ const LoginPage = () => {
                   },
                 })}
                 placeholder="Email girin"
-                className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
-                  errors.email ? "border-red-500" : "border-[#c3cad9]"
-                }`}
+                className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${errors.email ? "border-red-500" : "border-[#c3cad9]"
+                  }`}
               />
               {errors.email?.message && (
                 <p className="text-red-500 text-xs mt-1">
@@ -114,9 +113,8 @@ const LoginPage = () => {
                   },
                 })}
                 placeholder="Şifre girin"
-                className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
-                  errors.password ? "border-red-500" : "border-[#c3cad9]"
-                }`}
+                className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${errors.password ? "border-red-500" : "border-[#c3cad9]"
+                  }`}
               />
               {errors.password?.message && (
                 <p className="text-red-500 text-xs mt-1">
@@ -124,12 +122,6 @@ const LoginPage = () => {
                 </p>
               )}
             </div>
-            <Link
-              to="/forget-password"
-              className="text-sm font-semibold text-primary"
-            >
-              Şifrenizi mi unuttunuz?
-            </Link>
             <button
               type="submit"
               disabled={!isValid || isLoading}

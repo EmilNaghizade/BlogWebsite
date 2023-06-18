@@ -12,7 +12,7 @@ const ArticleCard = ({ className, post }) => {
       <Link to={`/blog/${post.slug}`}>
         <img
           src={
-            post.photo 
+            post.photo
               ? stables.UPLOAD_FOLDER_BASE_URL + post.photo
               : images.samplePostImage
           }
@@ -35,8 +35,8 @@ const ArticleCard = ({ className, post }) => {
           <div className="flex items-center gap-x-2 md:gap-x-2.5">
             <img
               src={
-                post.user.avatar
-                  ? stables.UPLOAD_FOLDER_BASE_URL + post.user.avatar
+                post?.user?.avatar !== null
+                  ? stables.UPLOAD_FOLDER_BASE_URL + post?.user?.avatar
                   : images.userPostImage
               }
               alt="Profile picture"
@@ -44,21 +44,21 @@ const ArticleCard = ({ className, post }) => {
             />
             <div className="flex flex-col">
               <h4 className="font-bold italic text-dark-soft text-sm md:text-base">
-                {post.user.name}
+                {post.user?.name}
               </h4>
               <div className="flex items-center gap-x-2">
                 <span
-                  className={`${post.user.verified ? "bg-[#36B37E]" : "bg-red-500"
+                  className={`${post.user?.verified ? "bg-[#36B37E]" : "bg-red-500"
                     }  w-fit bg-opacity-20 p-1.5 rounded-full`}
                 >
-                  {post.user.verified ? (
+                  {post.user?.verified ? (
                     <BsCheckLg className="w-1.5 h-1.5 text-[#36B37E]" />
                   ) : (
                     <AiOutlineClose className="w-1.5 h-1.5 text-red-500" />
                   )}
                 </span>
                 <span className="italic text-dark-light text-xs md:text-sm">
-                  {post.user.verified ? "Doğrulanmış" : "Doğrulanmamış"} Yazar
+                  {post.user?.verified ? "Doğrulanmış" : "Doğrulanmamış"} Yazar
                 </span>
               </div>
             </div>

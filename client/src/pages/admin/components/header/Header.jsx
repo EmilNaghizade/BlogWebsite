@@ -4,7 +4,7 @@ import { useWindowSize } from "@uidotdev/usehooks";
 import { images } from "../../../../constants";
 import { useEffect, useState } from "react";
 import { AiFillDashboard, AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import { FaComments } from "react-icons/fa";
+import { FaComments, FaUsers } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
 import NavItem from "./NavItem";
 import NavCollapse from "./NavCollapse";
@@ -16,6 +16,7 @@ const MENU_ITEMS = [
     icon: <AiFillDashboard className="text-xl" />,
     name: "dashboard",
     type: "link",
+    role: "admin",
   },
   {
     title: "Yorumlar",
@@ -23,6 +24,7 @@ const MENU_ITEMS = [
     icon: <FaComments className="text-xl" />,
     name: "comments",
     type: "link",
+    role: "user"
   },
   {
     title: "Makaleler",
@@ -33,7 +35,17 @@ const MENU_ITEMS = [
     icon: <MdDashboard className="text-xl" />,
     name: "posts",
     type: "collapse",
+    role: "user"
   },
+  {
+    title: "Kullanıcılar",
+    link: "/admin/users",
+    icon: <FaUsers className="text-xl" />,
+    name: "users",
+    type: "link",
+    role: "admin",
+  },
+
 ];
 
 const Header = () => {

@@ -10,7 +10,7 @@ const TextEditor = (props) => {
     const [value, setValue] = useState('');
     props.desc(value)
 
-    return <ReactQuill theme="snow" modules={modules} value={value} desc={value} onChange={setValue} />;
+    return <ReactQuill  theme="snow" modules={modules} value={value} desc={value} onChange={setValue} />;
 }
 
 export default TextEditor;

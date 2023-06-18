@@ -28,7 +28,7 @@ const CommentsContainer = ({
       },
       onSuccess: () => {
         toast.success(
-          "Your comment is sent successfully, it will be visible after the confirmation of the Admin"
+          "Yorumunuz başarıyla eklendi."
         );
       },
       onError: (error) => {
@@ -42,7 +42,7 @@ const CommentsContainer = ({
       return updateComment({ token, desc, commentId });
     },
     onSuccess: () => {
-      toast.success("Your comment is updated successfully");
+      toast.success("Yorumunuz başarıyla güncellendi.");
       queryClient.invalidateQueries(["blog", postSlug]);
     },
     onError: (error) => {
@@ -56,7 +56,7 @@ const CommentsContainer = ({
       return deleteComment({ token, commentId });
     },
     onSuccess: () => {
-      toast.success("Your comment is deleted successfully");
+      toast.success("Yorumunuz başarıyla silindi.");
       queryClient.invalidateQueries(["blog", postSlug]);
     },
     onError: (error) => {
@@ -92,7 +92,7 @@ const CommentsContainer = ({
   return (
     <div className={`${className}`}>
       <CommentForm
-        btnLabel="Send"
+        btnLabel="Gönder"
         formSubmitHanlder={(value) => addCommentHandler(value)}
         loading={isLoadingNewComment}
       />

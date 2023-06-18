@@ -14,9 +14,9 @@ import NewPost from "./pages/admin/screens/posts/NewPost";
 import ManagePosts from "./pages/admin/screens/posts/ManagePosts";
 import Blogs from "./pages/blogs/Blogs";
 import AboutUs from "./pages/other/AboutUs";
-import Contact from "./pages/other/Contact";
 import ProtectedRoute from './components/ProtectedRoute'
 import WrongRoute from "./components/WrongRoute";
+import ManageUsers from "./pages/admin/screens/users/ManageUsers";
 function App() {
   return (
     <div className="App font-rubik">
@@ -25,7 +25,6 @@ function App() {
         <Route path="/blog/:slug" element={<ArticleDetailPage />}></Route>
         <Route path="/blogs" element={<Blogs />}></Route>
         <Route path="/about-us" element={<AboutUs />}></Route>
-        <Route path="/contact" element={<Contact />}></Route>
         <Route path="/register" element={<RegisterPage />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/profile" element={<ProfilePage />}></Route>
@@ -36,6 +35,7 @@ function App() {
           <Route path="comments" element={<Comments />} />
           <Route path="posts/new" element={<NewPost />} />
           <Route path="posts/manage" element={<ManagePosts />} />
+          <Route path="users" element={<ManageUsers />} />
         </Route>
         <Route path="*" element={<WrongRoute />} />
       </Routes>

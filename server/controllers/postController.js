@@ -102,6 +102,7 @@ const deletePost = async (req, res, next) => {
 
 const getPost = async (req, res, next) => {
   try {
+
     const post = await Post.findOne({ slug: req.params.slug }).populate([
       {
         path: "user",
@@ -134,6 +135,8 @@ const getPost = async (req, res, next) => {
       },
     ]);
 
+    
+
     if (!post) {
       const error = new Error("Post was not found");
       return next(error);
@@ -159,5 +162,6 @@ const getAllPosts = async (req, res, next) => {
     next(error);
   }
 };
+
 
 export { createPost, updatePost, deletePost, getPost, getAllPosts };

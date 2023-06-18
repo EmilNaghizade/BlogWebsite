@@ -44,11 +44,12 @@ const Comment = ({
           {comment.user.name}
         </h5>
         <span className="text-xs text-dark-light">
-          {new Date(comment.createdAt).toLocaleDateString("en-US", {
+          {new Date(comment.createdAt).toLocaleDateString("tr-TR", {
             day: "numeric",
             month: "short",
             year: "numeric",
             hour: "2-digit",
+            minute: "2-digit",
           })}
         </span>
         {!isEditing && (
@@ -58,7 +59,7 @@ const Comment = ({
         )}
         {isEditing && (
           <CommentForm
-            btnLabel="Update"
+            btnLabel="Güncelle"
             formSubmitHanlder={(value) => updateComment(value, comment._id)}
             formCancelHandler={() => setAffectedComment(null)}
             initialText={comment.desc}
@@ -73,7 +74,7 @@ const Comment = ({
               }
             >
               <FiMessageSquare className="w-4 h-auto" />
-              <span>Reply</span>
+              <span>Cevapla</span>
             </button>
           )}
           {commentBelongsToUser && (
@@ -85,21 +86,21 @@ const Comment = ({
                 }
               >
                 <FiEdit2 className="w-4 h-auto" />
-                <span>Edit</span>
+                <span>Güncelle</span>
               </button>
               <button
                 className="flex items-center space-x-2"
                 onClick={() => deleteComment(comment._id)}
               >
                 <FiTrash className="w-4 h-auto" />
-                <span>Delete</span>
+                <span>Sil</span>
               </button>
             </>
           )}
         </div>
         {isReplying && (
           <CommentForm
-            btnLabel="Reply"
+            btnLabel="Cevapla"
             formSubmitHanlder={(value) =>
               addComment(value, repliedCommentId, replyOnUserId)
             }
