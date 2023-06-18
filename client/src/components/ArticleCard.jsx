@@ -39,7 +39,7 @@ const ArticleCard = ({ className, post }) => {
                   ? stables.UPLOAD_FOLDER_BASE_URL + post?.user?.avatar
                   : images.userPostImage
               }
-              alt="Profile picture"
+              alt="Profilepicture"
               className="w-9 h-9 md:w-10 md:h-10"
             />
             <div className="flex flex-col">
