@@ -1,14 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-const NavCollapse = ({
-  title,
-  content,
-  icon,
-  name,
-  activeNavName,
-  setActiveNavName,
-}) => {
+const NavCollapse = ({ title, content, icon, name, activeNavName, setActiveNavName }) => {
   const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
@@ -30,9 +23,7 @@ const NavCollapse = ({
       />
       <div
         className={`collapse-title flex min-h-0 items-center gap-x-2 py-0 pl-0 text-lg font-medium ${
-          name === activeNavName
-            ? "font-bold text-primary"
-            : "font-semibold text-[#A5A5A5]"
+          name === activeNavName ? 'font-bold text-primary' : 'font-semibold text-[#A5A5A5]'
         }`}
       >
         {icon}

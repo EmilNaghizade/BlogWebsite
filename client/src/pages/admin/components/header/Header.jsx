@@ -1,56 +1,55 @@
-import { Link } from "react-router-dom";
-import { useWindowSize } from "@uidotdev/usehooks";
+import { Link } from 'react-router-dom';
+import { useWindowSize } from '@uidotdev/usehooks';
 
-import { images } from "../../../../constants";
-import { useEffect, useState } from "react";
-import { AiFillDashboard, AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import { FaComments, FaUsers } from "react-icons/fa";
-import { MdDashboard } from "react-icons/md";
-import NavItem from "./NavItem";
-import NavCollapse from "./NavCollapse";
+import { images } from '../../../../constants';
+import { useEffect, useState } from 'react';
+import { AiFillDashboard, AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
+import { FaComments, FaUsers } from 'react-icons/fa';
+import { MdDashboard } from 'react-icons/md';
+import NavItem from './NavItem';
+import NavCollapse from './NavCollapse';
 
 const MENU_ITEMS = [
   {
-    title: "Gösterge Paneli",
-    link: "/admin",
+    title: 'Gösterge Paneli',
+    link: '/admin',
     icon: <AiFillDashboard className="text-xl" />,
-    name: "dashboard",
-    type: "link",
-    role: "admin",
+    name: 'dashboard',
+    type: 'link',
+    role: 'admin'
   },
   {
-    title: "Yorumlar",
-    link: "/admin/comments",
+    title: 'Yorumlar',
+    link: '/admin/comments',
     icon: <FaComments className="text-xl" />,
-    name: "comments",
-    type: "link",
-    role: "user"
+    name: 'comments',
+    type: 'link',
+    role: 'user'
   },
   {
-    title: "Makaleler",
+    title: 'Makaleler',
     content: [
-      { title: "Yeni", link: "/admin/posts/new" },
-      { title: "Yönet", link: "/admin/posts/manage" },
+      { title: 'Yeni', link: '/admin/posts/new' },
+      { title: 'Yönet', link: '/admin/posts/manage' }
     ],
     icon: <MdDashboard className="text-xl" />,
-    name: "posts",
-    type: "collapse",
-    role: "user"
+    name: 'posts',
+    type: 'collapse',
+    role: 'user'
   },
   {
-    title: "Kullanıcılar",
-    link: "/admin/users",
+    title: 'Kullanıcılar',
+    link: '/admin/users',
     icon: <FaUsers className="text-xl" />,
-    name: "users",
-    type: "link",
-    role: "admin",
-  },
-
+    name: 'users',
+    type: 'link',
+    role: 'admin'
+  }
 ];
 
 const Header = () => {
   const [isMenuActive, setIsMenuActive] = useState(false);
-  const [activeNavName, setActiveNavName] = useState("dashboard");
+  const [activeNavName, setActiveNavName] = useState('dashboard');
   const windowSize = useWindowSize();
 
   const toggleMenuHandler = () => {
@@ -83,10 +82,7 @@ const Header = () => {
       {isMenuActive && (
         <div className="fixed inset-0 lg:static lg:h-full lg:w-full">
           {/* underlay */}
-          <div
-            className="fixed inset-0 bg-black opacity-50 lg:hidden"
-            onClick={toggleMenuHandler}
-          />
+          <div className="fixed inset-0 bg-black opacity-50 lg:hidden" onClick={toggleMenuHandler} />
           {/* sidebar */}
           <div className="fixed bottom-0 left-0 top-0 z-50 w-3/4 overflow-y-auto bg-white p-4 lg:static lg:h-full lg:w-full lg:p-6">
             <Link to="/">
@@ -96,7 +92,7 @@ const Header = () => {
             {/* menu items */}
             <div className="mt-6 flex flex-col gap-y-[0.563rem]">
               {MENU_ITEMS.map((item) =>
-                item.type === "link" ? (
+                item.type === 'link' ? (
                   <NavItem
                     key={item.title}
                     title={item.title}

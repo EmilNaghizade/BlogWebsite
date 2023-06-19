@@ -1,33 +1,26 @@
-import axios from "axios";
+import axios from 'axios';
 
-export const createNewComment = async ({
-  token,
-  desc,
-  slug,
-  parent,
-  replyOnUser,
-}) => {
+export const createNewComment = async ({ token, desc, slug, parent, replyOnUser }) => {
   try {
     const config = {
       headers: {
-        Authorization: `Bearer ${token}`,
-      },
+        Authorization: `Bearer ${token}`
+      }
     };
 
     const { data } = await axios.post(
-      "/api/comments",
+      '/api/comments',
       {
         desc,
         slug,
         parent,
-        replyOnUser,
+        replyOnUser
       },
       config
     );
     return data;
   } catch (error) {
-    if (error.response && error.response.data.message)
-      throw new Error(error.response.data.message);
+    if (error.response && error.response.data.message) throw new Error(error.response.data.message);
     throw new Error(error.message);
   }
 };
@@ -36,21 +29,20 @@ export const updateComment = async ({ token, desc, commentId }) => {
   try {
     const config = {
       headers: {
-        Authorization: `Bearer ${token}`,
-      },
+        Authorization: `Bearer ${token}`
+      }
     };
 
     const { data } = await axios.put(
       `/api/comments/${commentId}`,
       {
-        desc,
+        desc
       },
       config
     );
     return data;
   } catch (error) {
-    if (error.response && error.response.data.message)
-      throw new Error(error.response.data.message);
+    if (error.response && error.response.data.message) throw new Error(error.response.data.message);
     throw new Error(error.message);
   }
 };
@@ -59,15 +51,14 @@ export const deleteComment = async ({ token, commentId }) => {
   try {
     const config = {
       headers: {
-        Authorization: `Bearer ${token}`,
-      },
+        Authorization: `Bearer ${token}`
+      }
     };
 
     const { data } = await axios.delete(`/api/comments/${commentId}`, config);
     return data;
   } catch (error) {
-    if (error.response && error.response.data.message)
-      throw new Error(error.response.data.message);
+    if (error.response && error.response.data.message) throw new Error(error.response.data.message);
     throw new Error(error.message);
   }
 };

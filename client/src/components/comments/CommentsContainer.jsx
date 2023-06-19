@@ -1,54 +1,42 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 
-import Comment from "./Comment";
-import CommentForm from "./CommentForm";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import {
-  createNewComment,
-  deleteComment,
-  updateComment,
-} from "../../services/index/comment";
-import { toast } from "react-hot-toast";
+import Comment from './Comment';
+import CommentForm from './CommentForm';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { createNewComment, deleteComment, updateComment } from '../../services/index/comment';
+import { toast } from 'react-hot-toast';
 
-const CommentsContainer = ({
-  className,
-  logginedUserId,
-  comments,
-  postSlug,
-}) => {
+const CommentsContainer = ({ className, logginedUserId, comments, postSlug }) => {
   const queryClient = useQueryClient();
   const userState = useSelector((state) => state.user);
   const [affectedComment, setAffectedComment] = useState(null);
 
-  const { mutate: mutateNewComment, isLoading: isLoadingNewComment } =
-    useMutation({
-      mutationFn: ({ token, desc, slug, parent, replyOnUser }) => {
-        return createNewComment({ token, desc, slug, parent, replyOnUser });
-      },
-      onSuccess: () => {
-        toast.success(
-          "Yorumunuz başarıyla eklendi."
-        );
-      },
-      onError: (error) => {
-        toast.error(error.message);
-        console.log(error);
-      },
-    });
+  const { mutate: mutateNewComment, isLoading: isLoadingNewComment } = useMutation({
+    mutationFn: ({ token, desc, slug, parent, replyOnUser }) => {
+      return createNewComment({ token, desc, slug, parent, replyOnUser });
+    },
+    onSuccess: () => {
+      toast.success('Yorumunuz başarıyla eklendi.');
+    },
+    onError: (error) => {
+      toast.error(error.message);
+      console.log(error);
+    }
+  });
 
   const { mutate: mutateUpdateComment } = useMutation({
     mutationFn: ({ token, desc, commentId }) => {
       return updateComment({ token, desc, commentId });
     },
     onSuccess: () => {
-      toast.success("Yorumunuz başarıyla güncellendi.");
-      queryClient.invalidateQueries(["blog", postSlug]);
+      toast.success('Yorumunuz başarıyla güncellendi.');
+      queryClient.invalidateQueries(['blog', postSlug]);
     },
     onError: (error) => {
       toast.error(error.message);
       console.log(error);
-    },
+    }
   });
 
   const { mutate: mutateDeleteComment } = useMutation({
@@ -56,13 +44,13 @@ const CommentsContainer = ({
       return deleteComment({ token, commentId });
     },
     onSuccess: () => {
-      toast.success("Yorumunuz başarıyla silindi.");
-      queryClient.invalidateQueries(["blog", postSlug]);
+      toast.success('Yorumunuz başarıyla silindi.');
+      queryClient.invalidateQueries(['blog', postSlug]);
     },
     onError: (error) => {
       toast.error(error.message);
       console.log(error);
-    },
+    }
   });
 
   const addCommentHandler = (value, parent = null, replyOnUser = null) => {
@@ -71,7 +59,7 @@ const CommentsContainer = ({
       parent,
       replyOnUser,
       token: userState.userInfo.token,
-      slug: postSlug,
+      slug: postSlug
     });
     setAffectedComment(null);
   };
@@ -80,7 +68,7 @@ const CommentsContainer = ({
     mutateUpdateComment({
       token: userState.userInfo.token,
       desc: value,
-      commentId,
+      commentId
     });
     setAffectedComment(null);
   };
@@ -96,7 +84,7 @@ const CommentsContainer = ({
         formSubmitHanlder={(value) => addCommentHandler(value)}
         loading={isLoadingNewComment}
       />
-      <div className="space-y-4 mt-8">
+      <div className="mt-8 space-y-4">
         {comments.map((comment) => (
           <Comment
             key={comment._id}

@@ -1,12 +1,12 @@
-import toast from "react-hot-toast";
-import { useEffect } from "react";
-import MainLayout from "../../components/MainLayout";
-import { Link, useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { useMutation } from "@tanstack/react-query";
-import { signup } from "../../services/index/users";
-import { useDispatch, useSelector } from "react-redux";
-import { userActions } from "../../store/reducers/userReducer";
+import toast from 'react-hot-toast';
+import { useEffect } from 'react';
+import MainLayout from '../../components/MainLayout';
+import { Link, useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { useMutation } from '@tanstack/react-query';
+import { signup } from '../../services/index/users';
+import { useDispatch, useSelector } from 'react-redux';
+import { userActions } from '../../store/reducers/userReducer';
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -24,14 +24,14 @@ const RegisterPage = () => {
     },
     onSuccess: (data) => {
       dispatch(userActions.setUserInfo(data));
-      localStorage.setItem("account", JSON.stringify(data));
-    },
+      localStorage.setItem('account', JSON.stringify(data));
+    }
   });
 
   useEffect(() => {
     if (userState.userInfo) {
       if (userState.userInfo.token) {
-        navigate("/");
+        navigate('/');
       }
     }
   }, [navigate, userState.userInfo]);
@@ -40,15 +40,15 @@ const RegisterPage = () => {
     register,
     handleSubmit,
     formState: { errors, isValid },
-    watch,
+    watch
   } = useForm({
     defaultValues: {
-      name: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: ''
     },
-    mode: "onChange",
+    mode: 'onChange'
   });
 
   const sumbitHandler = (data) => {
@@ -56,156 +56,128 @@ const RegisterPage = () => {
     mutate({ name, email, password });
   };
 
-  const password = watch("password");
+  const password = watch('password');
   return (
     <MainLayout>
       <section className="container mx-auto px-5 py-10">
-        <div className="w-full max-w-sm mx-auto">
-          <h1 className="text-2xl font-bold text-center text-dark-hard mb-8">
-            Kayıt ol
-          </h1>
+        <div className="mx-auto w-full max-w-sm">
+          <h1 className="mb-8 text-center text-2xl font-bold text-dark-hard">Kayıt ol</h1>
           <form onSubmit={handleSubmit(sumbitHandler)}>
             {/* Name */}
-            <div className="flex flex-col mb-6 w-full">
-              <label
-                htmlFor="name"
-                className="text-[#5a7184] font-semibold block"
-              >
+            <div className="mb-6 flex w-full flex-col">
+              <label htmlFor="name" className="block font-semibold text-[#5a7184]">
                 İsim
               </label>
               <input
                 type="text"
-                className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
-                  errors.name ? "border-red-500" : "border-[#c3cad9]"
+                className={`mt-3 block rounded-lg border px-5 py-4 font-semibold text-dark-hard outline-none placeholder:text-[#959ead] ${
+                  errors.name ? 'border-red-500' : 'border-[#c3cad9]'
                 }`}
                 id="name"
-                {...register("name", {
+                {...register('name', {
                   minLength: {
                     value: 1,
-                    message: "İsim en az 1 karakter olmalıdır",
+                    message: 'İsim en az 1 karakter olmalıdır'
                   },
                   required: {
                     value: true,
-                    message: "İsim zorunludur",
-                  },
+                    message: 'İsim zorunludur'
+                  }
                 })}
                 placeholder="İsminizi giriniz"
               />
-              {errors.name?.message && (
-                <p className="text-red-500 text-xs mt-1">
-                  {errors.name?.message}
-                </p>
-              )}
+              {errors.name?.message && <p className="mt-1 text-xs text-red-500">{errors.name?.message}</p>}
             </div>
             {/* Email */}
-            <div className="flex flex-col mb-6 w-full">
-              <label
-                htmlFor="email"
-                className="text-[#5a7184] font-semibold block"
-              >
+            <div className="mb-6 flex w-full flex-col">
+              <label htmlFor="email" className="block font-semibold text-[#5a7184]">
                 Email
               </label>
               <input
                 type="text"
-                className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
-                  errors.email ? "border-red-500" : "border-[#c3cad9]"
+                className={`mt-3 block rounded-lg border px-5 py-4 font-semibold text-dark-hard outline-none placeholder:text-[#959ead] ${
+                  errors.email ? 'border-red-500' : 'border-[#c3cad9]'
                 }`}
                 id="email"
-                {...register("email", {
+                {...register('email', {
                   pattern: {
                     value:
                       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                    message: "Geçersiz email address",
+                    message: 'Geçersiz email address'
                   },
                   required: {
                     value: true,
-                    message: "Email zoruludur",
-                  },
+                    message: 'Email zoruludur'
+                  }
                 })}
                 placeholder="Email giriniz"
               />
-              {errors.email?.message && (
-                <p className="text-red-500 text-xs mt-1">
-                  {errors.email?.message}
-                </p>
-              )}
+              {errors.email?.message && <p className="mt-1 text-xs text-red-500">{errors.email?.message}</p>}
             </div>
             {/* Password */}
-            <div className="flex flex-col mb-6 w-full">
-              <label
-                htmlFor="password"
-                className="text-[#5a7184] font-semibold block"
-              >
+            <div className="mb-6 flex w-full flex-col">
+              <label htmlFor="password" className="block font-semibold text-[#5a7184]">
                 Şifre
               </label>
               <input
                 type="password"
-                className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
-                  errors.password ? "border-red-500" : "border-[#c3cad9]"
+                className={`mt-3 block rounded-lg border px-5 py-4 font-semibold text-dark-hard outline-none placeholder:text-[#959ead] ${
+                  errors.password ? 'border-red-500' : 'border-[#c3cad9]'
                 }`}
                 id="password"
-                {...register("password", {
+                {...register('password', {
                   minLength: {
                     value: 6,
-                    message: "Şifre en az 6 karakter olmalıdr",
+                    message: 'Şifre en az 6 karakter olmalıdr'
                   },
                   required: {
                     value: true,
-                    message: "Şifre zorunludur",
-                  },
+                    message: 'Şifre zorunludur'
+                  }
                 })}
                 placeholder="Şifre giriniz"
               />
-              {errors.password?.message && (
-                <p className="text-red-500 text-xs mt-1">
-                  {errors.password?.message}
-                </p>
-              )}
+              {errors.password?.message && <p className="mt-1 text-xs text-red-500">{errors.password?.message}</p>}
             </div>
             {/* Confirm Password */}
-            <div className="flex flex-col mb-3 w-full">
-              <label
-                htmlFor="confirmPassword"
-                className="text-[#5a7184] font-semibold block"
-              >
+            <div className="mb-3 flex w-full flex-col">
+              <label htmlFor="confirmPassword" className="block font-semibold text-[#5a7184]">
                 Şifreyi Onaylayın
               </label>
               <input
                 type="password"
-                className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
-                  errors.confirmPassword ? "border-red-500" : "border-[#c3cad9]"
+                className={`mt-3 block rounded-lg border px-5 py-4 font-semibold text-dark-hard outline-none placeholder:text-[#959ead] ${
+                  errors.confirmPassword ? 'border-red-500' : 'border-[#c3cad9]'
                 }`}
                 id="confirmPassword"
-                {...register("confirmPassword", {
+                {...register('confirmPassword', {
                   required: {
                     value: true,
-                    message: "Şifre onaylama gereklidir",
+                    message: 'Şifre onaylama gereklidir'
                   },
                   validate: (value) => {
                     if (value !== password) {
-                      return "Şifreler uyuşmuyor";
+                      return 'Şifreler uyuşmuyor';
                     }
-                  },
+                  }
                 })}
                 placeholder="Şifreyi onaylayın"
               />
               {errors.confirmPassword?.message && (
-                <p className="text-red-500 text-xs mt-1">
-                  {errors.confirmPassword?.message}
-                </p>
+                <p className="mt-1 text-xs text-red-500">{errors.confirmPassword?.message}</p>
               )}
             </div>
             <button
               type="submit"
               disabled={!isValid || isLoading}
-              className={`bg-primary text-white font-bold text-lg py-4 px-8 w-full rounded-lg my-6 ${
-                isValid ? "" : "opacity-50 cursor-not-allowed"
+              className={`my-6 w-full rounded-lg bg-primary px-8 py-4 text-lg font-bold text-white ${
+                isValid ? '' : 'cursor-not-allowed opacity-50'
               } `}
             >
               Kayıt Ol
             </button>
             <p className="text-sm font-semibold text-[#5a7184]">
-              Hesabınız var mı?{" "}
+              Hesabınız var mı?{' '}
               <Link to="/login" className="text-primary">
                 Giriş yap
               </Link>

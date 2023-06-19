@@ -1,19 +1,19 @@
-import { useSelector } from "react-redux"
+import { useSelector } from 'react-redux';
 
 const Admin = () => {
-  const userState = useSelector((state) => state.user) //
+  const userState = useSelector((state) => state.user); //
   if (!userState.userInfo.admin) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen">
+      <div className="flex h-screen flex-col items-center justify-center">
         <h1 className="text-4xl font-bold">Bu sayfaya sadece adminlerin yetkisi vardır</h1>
-      </div >
-    )
+      </div>
+    );
   } else {
     return (
-      <div>
-        <h1>Manage Users</h1>
-      </div>
-    )
+      <>
+        <h1>Gösterge paneli</h1>
+      </>
+    );
   }
-}
-export default Admin
+};
+export default Admin;
