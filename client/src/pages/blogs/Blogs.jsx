@@ -6,7 +6,10 @@ import ArticleCardSkeleton from '../../components/ArticleCardSkeleton';
 import ErrorMessage from '../../components/ErrorMessage';
 import ArticleCard from '../../components/ArticleCard';
 
+
+
 const Blogs = () => {
+
   const { data, isLoading, isError } = useQuery({
     queryFn: () => getAllPosts(),
     queryKey: ['posts'],
@@ -15,6 +18,7 @@ const Blogs = () => {
       console.log(error);
     }
   });
+
   return (
     <MainLayout>
       <div className="container mx-auto flex flex-col  px-5 py-10">
@@ -39,7 +43,7 @@ const Blogs = () => {
             ))
           )}
         </div>
-        {/* pagination ekleme */}
+
       </div>
     </MainLayout>
   );

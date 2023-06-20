@@ -28,9 +28,10 @@ export const createPost = async ({ title, caption, body, tags, token }) => {
   }
 };
 
-export const getAllPosts = async () => {
+export const getAllPosts = async (search) => {
   try {
-    const { data } = await axios.get('/api/posts');
+    const { data } = await axios.get('/api/posts', {params: {search }});
+    console.log(data,"service")
     return data;
   } catch (error) {
     if (error.response && error.response.data.message) {

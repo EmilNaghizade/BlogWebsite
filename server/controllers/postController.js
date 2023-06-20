@@ -148,16 +148,28 @@ const getPost = async (req, res, next) => {
   }
 };
 
-const getAllPosts = async (req, res, next) => {
-  try {
-    const posts = await Post.find({}).populate([
-      {
-        path: "user",
-        select: ["avatar", "name", "verified"],
-      },
-    ]);
+const getAllPosts = async (req, res, next, ) => {
 
-    res.json(posts);
+  try {
+    const {search } = req.query;
+    let posts
+    if (search) {
+   posts = await Post.find({ title: { $regex: search, $options: "i" } }).populate([
+    {
+      path: "user",
+      select: ["avatar", "name", "verified"],
+    },
+  ]).exec();
+    }else{
+      posts = await Post.find({}).populate([
+        {
+          path: "user",
+          select: ["avatar", "name", "verified"],
+        },
+      ]).exec();
+    
+    }
+    res.json(posts)
   } catch (error) {
     next(error);
   }
