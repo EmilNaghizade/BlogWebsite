@@ -17,7 +17,7 @@ const NewPost = () => {
       return createPost({ title, caption, body, token });
     },
     onSuccess: () => {
-      toast.success('Blogunuz başarıyla oluşturuldu');
+      toast.success('Makaleniz başarıyla oluşturuldu');
     },
     onError: (error) => {
       toast.error(error.message);
@@ -51,7 +51,7 @@ const NewPost = () => {
   return (
     <section className="container mx-auto px-5 py-10">
       <div className="mx-auto  w-full">
-        <h1 className="mb-8 text-center text-2xl font-bold text-dark-hard">Yeni blog oluştur</h1>
+        <h1 className="mb-8 text-center text-2xl font-bold text-dark-hard">Yeni makale oluştur</h1>
         <form onSubmit={handleSubmit(sumbitHandler)}>
           <div className="mb-6 flex w-full flex-col">
             {/* Title */}
@@ -75,7 +75,7 @@ const NewPost = () => {
                     message: 'Başlık zorunludur'
                   }
                 })}
-                placeholder="Blog başlığını giriniz"
+                placeholder="Makale başlığını giriniz"
               />
               {errors.title?.message && <p className="mt-1 text-xs text-red-500">{errors.title?.message}</p>}
             </div>
@@ -101,7 +101,7 @@ const NewPost = () => {
                     message: 'Açıklama zorunludur'
                   }
                 })}
-                placeholder="Blog açıklamasını giriniz"
+                placeholder="Makale açıklamasını giriniz"
               />
               {errors.caption?.message && <p className="mt-1 text-xs text-red-500">{errors.caption?.message}</p>}
             </div>
