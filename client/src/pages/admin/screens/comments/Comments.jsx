@@ -1,4 +1,4 @@
 const Comments = () => {
-  return <div>Comments</div>;
+  return <div>Yorumlar</div>;
 };
 export default Comments;

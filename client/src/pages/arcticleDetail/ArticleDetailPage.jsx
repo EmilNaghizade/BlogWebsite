@@ -52,7 +52,7 @@ const ArticleDetailPage = () => {
               alt={data?.title}
             />
             <div className="mt-4 flex gap-2">
-              {data?.categories.map((category) => (
+              {data?.categories?.map((category) => (
                 <Link
                   to={`/blog?category=${category.name}`}
                   className="font-roboto inline-block text-sm text-primary md:text-base"
@@ -72,7 +72,7 @@ const ArticleDetailPage = () => {
           </article>
           <div>
             <SuggestedPosts
-              header="Latest Article"
+              header="En son yazılar"
               posts={postsData}
               tags={data?.tags}
               className="mt-8 lg:mt-0 lg:max-w-xs"

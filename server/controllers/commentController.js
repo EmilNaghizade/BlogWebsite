@@ -8,8 +8,7 @@ const createComment = async (req, res, next) => {
     const post = await Post.findOne({ slug: slug });
 
     if (!post) {
-      const error = new Error("Post was not found");
-      return next(error);
+      return res.status(404).json({ message: "Makale bulunamadı" });
     }
 
     const newComment = new Comment({
@@ -35,8 +34,7 @@ const updateComment = async (req, res, next) => {
     const comment = await Comment.findById(req.params.commentId);
 
     if (!comment) {
-      const error = new Error("Comment was not found");
-      return next(error);
+      return res.status(404).json({ message: "Yorum bulunamadı" });
     }
 
     comment.desc = desc || comment.desc;
@@ -54,12 +52,12 @@ const deleteComment = async (req, res, next) => {
     await Comment.deleteMany({ parent: comment._id });
 
     if (!comment) {
-      const error = new Error("Comment was not found");
-      return next(error);
+      return res.status(404).json({ message: "Yorum bulunamadı" });
+      
     }
 
     return res.json({
-      message: "Comment is deleted successfully",
+      message: "Yorum başarıyla silindi",
     });
   } catch (error) {
     next(error);

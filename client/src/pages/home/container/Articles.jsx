@@ -9,6 +9,7 @@ import ErrorMessage from '../../../components/ErrorMessage';
 import { Link } from 'react-router-dom';
 
 const Articles = () => {
+
   const { data, isLoading, isError } = useQuery({
     queryFn: () => getAllPosts(),
     queryKey: ['posts'],
@@ -28,15 +29,13 @@ const Articles = () => {
         ) : isError ? (
           <ErrorMessage message="Couldn't fetch the posts data" />
         ) : (
-          data
-            .slice(0, 6)
-            .map((post) => (
-              <ArticleCard
-                key={post._id}
-                post={post}
-                className="w-full md:w-[calc(50%-20px)] lg:w-[calc(33.33%-21px)]"
-              />
-            ))
+          data.posts.map((post) => (
+            <ArticleCard
+              key={post._id}
+              post={post}
+              className="w-full md:w-[calc(50%-20px)] lg:w-[calc(33.33%-21px)]"
+            />
+          ))
         )}
       </div>
       <Link

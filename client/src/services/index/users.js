@@ -18,13 +18,18 @@ export const signup = async ({ name, email, password }) => {
 
 export const login = async ({ email, password }) => {
   try {
-    const { data } = await axios.post('/api/users/login', { email, password });
+    const response = await axios.post('/api/users/login', { email, password });
+    const { data } = response;
+    console.log(data,"login")
     return data;
   } catch (error) {
-    if (error.response && error.response.data.message) {
-      throw new Error(error.response.data.message);
+   let errorMessage = 'Bir hata oluştu.';
+    if (error.response && error.response.data && error.response.data.message) {
+      errorMessage = error.response.data.message;
+    } else if (error.message) {
+      errorMessage = error.message;
     }
-    throw new Error(error.message);
+    throw new Error(errorMessage);
   }
 };
 

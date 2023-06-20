@@ -1,4 +1,4 @@
 const ManagePosts = () => {
-  return <div>ManagePosts</div>;
+  return <div>Makaleleri yönet</div>;
 };
 export default ManagePosts;

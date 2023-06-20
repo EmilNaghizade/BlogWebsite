@@ -6,7 +6,7 @@ const SuggestedPosts = ({ className, header, posts = [], tags }) => {
     <div className={`w-full rounded-lg p-4 shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] ${className}`}>
       <h2 className="font-medium text-dark-hard md:text-xl">{header}</h2>
       <div className="mt-5 grid gap-y-5 md:grid-cols-2 md:gap-x-5 lg:grid-cols-1">
-        {posts.slice(0, 10).map((item) => (
+        {posts?.posts?.map((item) => (
           <div key={item._id} className="flex flex-nowrap items-center space-x-3">
             <img
               src={item?.photo !== '' ? stables.UPLOAD_FOLDER_BASE_URL + item?.photo : images.samplePostImage}

@@ -24,7 +24,7 @@ const LoginPage = () => {
     },
     onError: (error) => {
       console.log(error, 'error');
-      toast.error(error);
+      toast.error(error.message.toString()); 
     }
   });
 
@@ -78,9 +78,8 @@ const LoginPage = () => {
                   }
                 })}
                 placeholder="Email girin"
-                className={`mt-3 block rounded-lg border px-5 py-4 font-semibold text-dark-hard outline-none placeholder:text-[#959ead] ${
-                  errors.email ? 'border-red-500' : 'border-[#c3cad9]'
-                }`}
+                className={`mt-3 block rounded-lg border px-5 py-4 font-semibold text-dark-hard outline-none placeholder:text-[#959ead] ${errors.email ? 'border-red-500' : 'border-[#c3cad9]'
+                  }`}
               />
               {errors.email?.message && <p className="mt-1 text-xs text-red-500">{errors.email?.message}</p>}
             </div>
@@ -102,9 +101,8 @@ const LoginPage = () => {
                   }
                 })}
                 placeholder="Şifre girin"
-                className={`mt-3 block rounded-lg border px-5 py-4 font-semibold text-dark-hard outline-none placeholder:text-[#959ead] ${
-                  errors.password ? 'border-red-500' : 'border-[#c3cad9]'
-                }`}
+                className={`mt-3 block rounded-lg border px-5 py-4 font-semibold text-dark-hard outline-none placeholder:text-[#959ead] ${errors.password ? 'border-red-500' : 'border-[#c3cad9]'
+                  }`}
               />
               {errors.password?.message && <p className="mt-1 text-xs text-red-500">{errors.password?.message}</p>}
             </div>
@@ -115,7 +113,7 @@ const LoginPage = () => {
             >
               Giriş Yap
             </button>
-            <p className="text-sm font-semibold text-[#5a7184]">
+            <p className="text-sm font-semibold text-[#5a7184] " style={{ marginBottom: "49px" }}>
               Hesabınız yok mu?{' '}
               <Link to="/register" className="text-primary">
                 Kayıt ol

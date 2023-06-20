@@ -26,6 +26,8 @@ const Search = () => {
     }
   };
 
+  console.log(searchResults.posts, "searchResults");
+
 
   return (
     <form >
@@ -39,10 +41,9 @@ const Search = () => {
           onChange={handleSearchChange}
         />
       </div>
-      {searchResults.length > 0 && searchValue.trim() !== '' && (
+      { searchValue.trim() !== '' && (
         <div className="w-full rounded-lg py-3 px-3 font-semibold text-white bg-dark-soft    max-h-72 overflow-y-auto">
-
-          {searchResults.map((post) => (
+          {searchResults?.posts?.map((post) => (
             <div className="px-4 py-2 border-b">
               <Link to={`/blog/${post.slug}`} key={post.id} >
                 {post.title}

@@ -28,9 +28,9 @@ export const createPost = async ({ title, caption, body, tags, token }) => {
   }
 };
 
-export const getAllPosts = async (search) => {
+export const getAllPosts = async (search, page) => {
   try {
-    const { data } = await axios.get('/api/posts', {params: {search }});
+    const { data } = await axios.get('/api/posts', {params: {search,page }});
     console.log(data,"service")
     return data;
   } catch (error) {

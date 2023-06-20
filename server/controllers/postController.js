@@ -32,9 +32,8 @@ const updatePost = async (req, res, next) => {
     const post = await Post.findOne({ slug: req.params.slug });
 
     if (!post) {
-      const error = new Error("Post aws not found");
-      next(error);
-      return;
+      return res.status(404).json({ message: "Makale bulunamadı" });
+
     }
 
     const upload = uploadPicture.single("postPicture");
@@ -53,10 +52,7 @@ const updatePost = async (req, res, next) => {
 
     upload(req, res, async function (err) {
       if (err) {
-        const error = new Error(
-          "An unknown error occured when uploading " + err.message
-        );
-        next(error);
+        return res.status(400).json({ message: "Fotoğraf yüklenirken bir hatayla karşılaşıldı" });
       } else {
         // every thing went well
         if (req.file) {
@@ -86,14 +82,13 @@ const deletePost = async (req, res, next) => {
     const post = await Post.findOneAndDelete({ slug: req.params.slug });
 
     if (!post) {
-      const error = new Error("Post aws not found");
-      return next(error);
+      return res.status(404).json({ message: "Makale bulunamadı" });
     }
 
     await Comment.deleteMany({ post: post._id });
 
     return res.json({
-      message: "Post is successfully deleted",
+      message: "Makale başarıyla silindi",
     });
   } catch (error) {
     next(error);
@@ -148,28 +143,35 @@ const getPost = async (req, res, next) => {
   }
 };
 
-const getAllPosts = async (req, res, next, ) => {
+const PAGE_SIZE = 6; // Sayfa başına gösterilecek maksimum gönderi sayısı
 
+const getAllPosts = async (req, res, next) => {
   try {
-    const {search } = req.query;
-    let posts
+    const { search } = req.query;
+    const page = parseInt(req.query.page) || 1; // Geçerli sayfa numarası, varsayılan olarak 1
+    const skip = (page - 1) * PAGE_SIZE; // Atlanacak gönderi sayısı
+
+    let query = {};
     if (search) {
-   posts = await Post.find({ title: { $regex: search, $options: "i" } }).populate([
-    {
-      path: "user",
-      select: ["avatar", "name", "verified"],
-    },
-  ]).exec();
-    }else{
-      posts = await Post.find({}).populate([
+      query.title = { $regex: search, $options: "i" };
+    }
+
+    const totalPosts = await Post.countDocuments(query); // Toplam gönderi sayısı
+
+    let posts = await Post.find(query)
+      .skip(skip)
+      .limit(PAGE_SIZE)
+      .populate([
         {
           path: "user",
           select: ["avatar", "name", "verified"],
         },
-      ]).exec();
-    
-    }
-    res.json(posts)
+      ])
+      .exec();
+
+    const totalPages = Math.ceil(totalPosts / PAGE_SIZE); // Toplam sayfa sayısı
+
+    res.json({ posts, totalPages });
   } catch (error) {
     next(error);
   }

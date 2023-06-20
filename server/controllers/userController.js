@@ -11,7 +11,7 @@ const registerUser = async (req, res, next) => {
     //kullanıcı varsa hata döndür
     if (user) {
       // return res.status(400).json({ message: "User have already registered" });
-      throw new Error("User have already registered");
+       return res.status(400).json({ message: "Kullanıcı sistemimize kayıtlı" });
     }
     //yeni kullanıcı ekler
     user = await User.create({
@@ -40,7 +40,7 @@ const loginUser = async (req, res, next) => {
 
     let user = await User.findOne({ email });
     if (!user) {
-      throw new Error("Email not found");
+      return res.status(404).json({ message: "Email bulunmadı" });
     }
 
     if (await user.comparePassword(password)) {
@@ -54,7 +54,7 @@ const loginUser = async (req, res, next) => {
         token: await user.generateJWT(), //jwt token
       });
     } else {
-      throw new Error("Invalid password");
+      return res.status(401).json({ message: "Parolanız yanlış" });
     }
   } catch (error) {
     next(error);
@@ -75,9 +75,7 @@ const userProfile = async (req, res, next) => {
         admin: user.admin,
       });
     } else {
-      let error = new Error("User not found");
-      error.statusCode = 404;
-      next(error);
+      return res.status(404).json({ message: "Email bulunmadı" });
     }
   } catch (error) {
     next(error);
@@ -89,14 +87,16 @@ const updateProfile = async (req, res, next) => {
     let user = await User.findById(req.user._id);
 
     if (!user) {
-      throw new Error("User not found");
+      return res.status(404).json({ message: "Email bulunmadı" });
+
     }
 
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;
 
     if (req.body.password && req.body.password.length < 6) {
-      throw new Error("Password must be at least 6 characters");
+      return res.status(400).json({ message: "Parola 6 karakterdan fazla olmalıdır" });
+
     } else if (req.body.password) {
       user.password = req.body.password;
     }
@@ -123,10 +123,8 @@ const updateProfilePicture = async (req, res, next) => {
 
     upload(req, res, async (err) => {
       if (err) {
-        const error = new Error(
-          "An unkown error occured when uploading" + err.message
-        );
-        next(error);
+        return res.status(400).json({ message: "Fotoğraf yüklenirken bir hatayla karşılaşıldı" });
+
       } else {
         if (req.file) {
           let filename;
