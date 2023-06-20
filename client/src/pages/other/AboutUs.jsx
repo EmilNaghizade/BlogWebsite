@@ -23,7 +23,7 @@ const AboutUs = () => {
           <div className="flex flex-col">
             <h1 className="text-2xl">Aslı Nur Ünver</h1>
             <p>
-              Üniversite hayatım boyunca, Bilgisayar Mühendisliği bölümünde aldığım dersler ve proje çalışmalarıyla
+              Merhaba, Ben Aslı! Üniversite hayatım boyunca, Bilgisayar Mühendisliği bölümünde aldığım dersler ve proje çalışmalarıyla
               sağlam bir temel oluşturdum. Programlama dilleri, veri yapıları, algoritmalar, yazılım mühendisliği
               prensipleri gibi konularda derinlemesine bilgi sahibi oldum. Bu bilgilerimi <b> web ön yüzü geliştirme</b>{' '}
               alanında kullanmayı seçtim, çünkü kullanıcı arayüzleri oluşturarak insanların dijital deneyimlerini
