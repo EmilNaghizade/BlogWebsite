@@ -79,11 +79,19 @@ const CommentsContainer = ({ className, logginedUserId, comments, postSlug }) =>
 
   return (
     <div className={`${className}`}>
-      <CommentForm
-        btnLabel="Gönder"
-        formSubmitHanlder={(value) => addCommentHandler(value)}
-        loading={isLoadingNewComment}
-      />
+      {!userState?.userInfo ? (
+        <div className="text-center">
+          <span className="text-sm text-dark-light">Yorum yapabilmek için giriş yapmalısınız.</span>
+        </div>
+      ) : (
+        <CommentForm
+          btnLabel="Gönder"
+          formSubmitHanlder={(value) => addCommentHandler(value)}
+          loading={isLoadingNewComment}
+        />
+
+      )}
+
       <div className="mt-8 space-y-4">
         {comments.map((comment) => (
           <Comment
