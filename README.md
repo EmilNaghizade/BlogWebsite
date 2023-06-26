@@ -17,7 +17,7 @@ This project is a MERN (MongoDB, Express.js, React.js, Node.js) stack-based blog
 1. Clone this repository to your local machine:
 
    ```bash
-   [git clone https://github.com/YourUsername/BlogWebsite.git](https://github.com/EmilNaghizade/BlogWebsite.git)
+   https://github.com/EmilNaghizade/BlogWebsite.git
 
 2.Navigate to the client and server folders:
   cd BlogWebsite/client
