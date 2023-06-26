@@ -20,7 +20,7 @@ export const login = async ({ email, password }) => {
   try {
     const response = await axios.post('/api/users/login', { email, password });
     const { data } = response;
-    console.log(data,"login")
+   
     return data;
   } catch (error) {
    let errorMessage = 'Bir hata oluştu.';
@@ -120,7 +120,7 @@ export const deleteUser = async ({ token, userId }) => {
       }
     };
     const { data } = await axios.delete(`/api/users/delete/${userId}`, config);
-    console.log(data, 'service');
+
     return data;
   } catch (error) {
     if (error.response && error.response.data.message) {

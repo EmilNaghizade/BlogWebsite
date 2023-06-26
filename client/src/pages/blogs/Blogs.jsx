@@ -1,7 +1,6 @@
 import MainLayout from '../../components/MainLayout';
 import { useQuery } from '@tanstack/react-query';
 import { getAllPosts } from '../../services/index/posts';
-import toast from 'react-hot-toast';
 import ArticleCardSkeleton from '../../components/ArticleCardSkeleton';
 import ErrorMessage from '../../components/ErrorMessage';
 import ArticleCard from '../../components/ArticleCard';
@@ -16,7 +15,6 @@ const Blogs = () => {
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
   };
-  console.log(data, "data");
 
   return (
     <MainLayout>

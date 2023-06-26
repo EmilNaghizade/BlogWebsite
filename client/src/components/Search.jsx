@@ -26,7 +26,6 @@ const Search = () => {
     }
   };
 
-  console.log(searchResults.posts, "searchResults");
 
 
   return (

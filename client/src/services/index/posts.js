@@ -31,7 +31,7 @@ export const createPost = async ({ title, caption, body, tags, token }) => {
 export const getAllPosts = async (search, page) => {
   try {
     const { data } = await axios.get('/api/posts', {params: {search,page }});
-    console.log(data,"service")
+  
     return data;
   } catch (error) {
     if (error.response && error.response.data.message) {

@@ -23,7 +23,7 @@ const LoginPage = () => {
       localStorage.setItem('account', JSON.stringify(data));
     },
     onError: (error) => {
-      console.log(error, 'error');
+      
       toast.error(error.message.toString()); 
     }
   });
