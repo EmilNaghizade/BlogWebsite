@@ -63,7 +63,7 @@ const CTA = () => {
             <button className="flex w-full items-center rounded-lg  bg-white px-4 py-3 font-bold text-primary hover:bg-primary hover:text-white ">
               <BsLinkedin className="h-6 w-6" />
               <a
-                href="https://www.linkedin.com/in/nagizade-naghizade-98166521a/"
+                href="https://www.linkedin.com/in/emil-naghizade-98166521a/"
                 target="_blank"
                 rel="noreferrer"
                 className="ml-5 text-center"
